@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Request for Quotation — Elteros Projektai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #F5F7FA;
+    --bg-white:  #FFFFFF;
+    --bg-card:   #FFFFFF;
+    --line:      #E2E7EF;
+    --line-mid:  #CBD3DF;
+    --blue:      #1A5FD4;
+    --blue-light:#EEF3FD;
+    --blue-glow: rgba(26,95,212,0.13);
+    --text:      #0D1B2E;
+    --text-mid:  #3D5068;
+    --text-muted:#7A8FA8;
+    --danger:    #E53E3E;
+    --success:   #0D9E6E;
+    --font:      'Outfit', sans-serif;
+    --radius:    8px;
+    --radius-lg: 14px;
+    --shadow:    0 2px 12px rgba(13,27,46,0.07);
+    --shadow-lg: 0 8px 32px rgba(13,27,46,0.10);
+    --tr:        0.16s ease;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 66px;
+    box-shadow: 0 1px 0 var(--line);
+  }
+  .nav-logo {
+    font-size: 18px; font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-mark {
+    width: 28px; height: 28px;
+    background: var(--blue);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-mark svg { width: 14px; height: 14px; }
+  .nav-tag {
+    font-size: 12px; font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    border: 1px solid var(--line);
+    padding: 5px 12px; border-radius: 20px;
+    background: var(--bg);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1080px; margin: 0 auto;
+    padding: 64px 48px 48px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--blue); display: block;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700; line-height: 1.14;
+    letter-spacing: -0.03em;
+    color: var(--text); margin-bottom: 16px;
+  }
+  .hero h1 em { font-style: normal; color: var(--blue); }
+  .hero p {
+    font-size: 15px; font-weight: 400;
+    line-height: 1.75; color: var(--text-mid);
+    margin-bottom: 28px; max-width: 400px;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--blue); color: #fff;
+    font-size: 14px; font-weight: 600;
+    padding: 13px 26px; border-radius: var(--radius);
+    text-decoration: none; transition: var(--tr);
+  }
+  .hero-cta:hover {
+    background: #1650B8;
+    box-shadow: 0 6px 20px rgba(26,95,212,0.28);
+    transform: translateY(-1px);
+  }
+  .hero-cta svg { width: 15px; height: 15px; }
+
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stat-box {
+    background: var(--bg-white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px 22px;
+    box-shadow: var(--shadow);
+  }
+  .stat-number {
+    font-size: 34px; font-weight: 800;
+    letter-spacing: -0.05em; color: var(--text); line-height: 1;
+  }
+  .stat-number span { color: var(--blue); }
+  .stat-label {
+    font-size: 11px; font-weight: 500;
+    color: var(--text-muted); letter-spacing: 0.06em;
+    text-transform: uppercase; margin-top: 6px;
+  }
+
+  /* ── BRANDS ── */
+  .brands-section {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-white);
+    padding: 22px 0;
+    overflow: hidden;
+  }
+  .brands-label {
+    text-align: center;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .brand-badge {
+    display: inline-flex; align-items: center;
+    padding: 8px 28px;
+    border-right: 1px solid var(--line);
+    font-size: 13px; font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.02em; white-space: nowrap;
+    transition: color var(--tr);
+  }
+  .brand-badge:hover { color: var(--blue); }
+
+  /* ── RFQ SECTION ── */
+  .rfq-section {
+    max-width: 1080px; margin: 0 auto;
+    padding: 56px 48px 80px;
+  }
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+  }
+  .section-header h2 {
+    font-size: clamp(22px, 2.8vw, 32px);
+    font-weight: 700; letter-spacing: -0.025em; line-height: 1.15;
+  }
+  .section-header p {
+    font-size: 14px; color: var(--text-muted); line-height: 1.6;
+    max-width: 300px; text-align: right;
+  }
+
+  /* Client Info */
+  .client-info-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-bottom: 28px;
+  }
+  .field-group { display: flex; flex-direction: column; gap: 6px; }
+  .field-group label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-mid);
+  }
+  .field-group input,
+  .field-group select,
+  .field-group textarea {
+    background: var(--bg-white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+    padding: 11px 14px;
+    outline: none;
+    transition: border-color var(--tr), box-shadow var(--tr);
+    width: 100%;
+  }
+  .field-group input::placeholder,
+  .field-group textarea::placeholder { color: var(--text-muted); }
+  .field-group input:focus,
+  .field-group select:focus,
+  .field-group textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px var(--blue-glow);
+  }
+  .field-group textarea { resize: vertical; min-height: 80px; }
+
+  /* RFQ Table */
+  .rfq-card {
+    background: var(--bg-white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+  .rfq-table-header {
+    display: grid;
+    grid-template-columns: 44px 1fr 190px 90px 44px;
+    padding: 11px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    gap: 8px;
+  }
+  .rfq-table-header span {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted);
+    display: flex; align-items: center;
+  }
+  .rfq-table-body { padding: 8px; }
+
+  .rfq-row {
+    display: grid;
+    grid-template-columns: 44px 1fr 190px 90px 44px;
+    gap: 8px; align-items: center;
+    padding: 5px 8px;
+    border-radius: var(--radius);
+    transition: background var(--tr);
+  }
+  .rfq-row:hover { background: var(--bg); }
+  .row-num {
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted); text-align: center;
+  }
+  .rfq-row input,
+  .rfq-row select {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 9px 11px;
+    outline: none; width: 100%;
+    transition: border-color var(--tr), box-shadow var(--tr);
+  }
+  .rfq-row input::placeholder { color: var(--text-muted); }
+  .rfq-row input:focus,
+  .rfq-row select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px var(--blue-glow);
+    background: var(--bg-white);
+  }
+  .btn-remove {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--line-mid);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px;
+    font-size: 18px; line-height: 1;
+    transition: all var(--tr);
+    margin: 0 auto;
+  }
+  .btn-remove:hover {
+    color: var(--danger);
+    border-color: #FECDD3;
+    background: #FFF5F5;
+  }
+
+  .rfq-table-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px;
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap; gap: 10px;
+  }
+  .btn-add-row {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--text-mid);
+    font-family: var(--font);
+    font-size: 13px; font-weight: 500;
+    padding: 8px 16px; cursor: pointer;
+    transition: all var(--tr);
+  }
+  .btn-add-row:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: var(--blue-light);
+  }
+  .row-count-label { font-size: 12px; color: var(--text-muted); }
+  .row-count-label strong { color: var(--text-mid); }
+
+  /* Bottom options */
+  .bottom-options {
+    display: grid; grid-template-columns: 240px 1fr;
+    gap: 16px; margin-bottom: 28px;
+  }
+  .bottom-options .field-group:last-child { grid-column: 2; }
+
+  /* Submit bar */
+  .submit-bar {
+    display: flex; align-items: center; justify-content: flex-end;
+    gap: 12px;
+    padding: 20px 24px;
+    background: var(--bg-white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--text-mid);
+    font-family: var(--font);
+    font-size: 14px; font-weight: 500;
+    padding: 11px 22px; cursor: pointer;
+    transition: all var(--tr);
+  }
+  .btn-secondary:hover { border-color: var(--line-mid); color: var(--text); }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--blue); border: none;
+    border-radius: var(--radius);
+    color: #fff; font-family: var(--font);
+    font-size: 14px; font-weight: 600;
+    padding: 11px 28px; cursor: pointer;
+    transition: all var(--tr);
+  }
+  .btn-primary:hover {
+    background: #1650B8;
+    box-shadow: 0 6px 20px rgba(26,95,212,0.28);
+    transform: translateY(-1px);
+  }
+  .btn-primary svg { width: 15px; height: 15px; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 28px; right: 28px;
+    background: var(--bg-white);
+    border: 1px solid #C6F6E0;
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    transform: translateY(60px); opacity: 0;
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; pointer-events: all; }
+  .toast-icon { font-size: 18px; }
+  .toast-text strong { display: block; font-size: 14px; color: var(--text); }
+  .toast-text span { font-size: 12px; color: var(--text-muted); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--line);
+    background: var(--bg-white);
+  }
+  .footer-inner {
+    max-width: 1080px; margin: 0 auto;
+    padding: 32px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-size: 15px; font-weight: 700;
+    color: var(--text); text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .footer-logo-mark {
+    width: 22px; height: 22px;
+    background: var(--blue); border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .footer-logo-mark svg { width: 11px; height: 11px; }
+  .footer-links { display: flex; gap: 20px; list-style: none; }
+  .footer-links a {
+    font-size: 13px; color: var(--text-muted);
+    text-decoration: none; transition: color var(--tr);
+  }
+  .footer-links a:hover { color: var(--blue); }
+  .footer-copy { font-size: 12px; color: var(--text-muted); }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 36px; padding: 48px 28px 36px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .rfq-section { padding: 40px 28px 60px; }
+    nav { padding: 0 28px; }
+    .rfq-table-header, .rfq-row { grid-template-columns: 36px 1fr 150px 80px 36px; }
+    .bottom-options { grid-template-columns: 1fr; }
+    .bottom-options .field-group:last-child { grid-column: 1; }
+    .footer-inner { padding: 28px; }
+  }
+  @media (max-width: 580px) {
+    nav { padding: 0 20px; }
+    .hero { padding: 36px 20px 28px; }
+    .rfq-section { padding: 32px 20px 48px; }
+    .rfq-table-header { display: none; }
+    .rfq-row {
+      grid-template-columns: 1fr;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 12px; margin-bottom: 8px;
+    }
+    .row-num { display: none; }
+    .btn-remove { margin: 4px 0 0 auto; }
+    .client-info-grid { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; }
+    .section-header p { text-align: left; }
+    .submit-bar { justify-content: flex-start; flex-wrap: wrap; }
+    .footer-inner { flex-direction: column; gap: 12px; padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://elteros.lt">
+    <span class="nav-logo-mark">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    ELTEROS
+  </a>
+  <span class="nav-tag">Request for Quotation</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">RFQ Portal</div>
+    <h1>Submit Your<br/><em>Parts & Quantities</em><br/>in Minutes</h1>
+    <p>Fill in your part numbers and quantities below. Our procurement team will respond with a competitive quote within 24 hours.</p>
+    <a class="hero-cta" href="#rfq-form">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Start Your RFQ
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-box">
+      <div class="stat-number">24<span>h</span></div>
+      <div class="stat-label">Quote turnaround</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">11<span>+</span></div>
+      <div class="stat-label">Partner brands</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">20<span>+</span></div>
+      <div class="stat-label">Years experience</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">16<span>+</span></div>
+      <div class="stat-label">Countries served</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands-section">
+  <div class="brands-label">Authorized distributor &amp; integrator for leading manufacturers</div>
+  <div style="overflow:hidden">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+</div>
+
+<!-- RFQ FORM -->
+<section class="rfq-section" id="rfq-form">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Request for Quotation</div>
+      <h2>Your RFQ Details</h2>
+    </div>
+    <p>Our team responds within one business day with a full quotation.</p>
+  </div>
+
+  <form id="rfqForm" onsubmit="handleSubmit(event)">
+
+    <!-- Client Info — just email + company -->
+    <div class="client-info-grid">
+      <div class="field-group">
+        <label>Email Address *</label>
+        <input type="email" id="emailField" placeholder="you@company.com" required />
+      </div>
+      <div class="field-group">
+        <label>Company Name *</label>
+        <input type="text" id="companyField" placeholder="UAB Company" required />
+      </div>
+    </div>
+
+    <!-- RFQ Table — no Unit column -->
+    <div class="rfq-card">
+      <div class="rfq-table-header">
+        <span>#</span>
+        <span>Part Number (PN)</span>
+        <span>Brand / Manufacturer</span>
+        <span>Qty</span>
+        <span></span>
+      </div>
+      <div class="rfq-table-body" id="rfqRows"></div>
+      <div class="rfq-table-footer">
+        <button type="button" class="btn-add-row" onclick="addRow()">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Add Row
+        </button>
+        <span class="row-count-label"><strong id="rowCountDisplay">3</strong> rows</span>
+      </div>
+    </div>
+
+    <!-- Delivery date + Notes only -->
+    <div class="bottom-options">
+      <div class="field-group">
+        <label>Required Delivery Date</label>
+        <input type="date" />
+      </div>
+      <div class="field-group">
+        <label>Additional Notes / Special Requirements</label>
+        <textarea placeholder="e.g. alternative part numbers accepted, specific certifications required, urgent delivery…"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit bar — clean, just the button -->
+    <div class="submit-bar">
+      <button type="button" class="btn-secondary" onclick="clearForm()">Clear</button>
+      <button type="submit" class="btn-primary">
+        Submit RFQ
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a class="footer-logo" href="https://elteros.lt">
+      <span class="footer-logo-mark">
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      ELTEROS PROJEKTAI
+    </a>
+    <ul class="footer-links">
+      <li><a href="https://elteros.lt">Main Site</a></li>
+      <li><a href="https://elteros.lt/kontaktai/">Contact</a></li>
+      <li><a href="https://elteros.lt/privatumo-politika/">Privacy Policy</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 UAB Elteros Projektai · Žirmūnų g. 54B, Vilnius</span>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✅</span>
+  <div class="toast-text">
+    <strong>RFQ Submitted Successfully</strong>
+    <span>We'll send your quote within 24 business hours.</span>
+  </div>
+</div>
+
+<script>
+  const brands = [
+    'Schneider Electric','Siemens','ABB','Allen-Bradley',
+    'Belimo','Eaton','Hager','Yageo',
+    'Phoenix Contact','Socomec','Weidmüller','Wago'
+  ];
+
+  // Build marquee
+  const track = document.getElementById('marqueeTrack');
+  [...brands, ...brands].forEach(b => {
+    const el = document.createElement('span');
+    el.className = 'brand-badge';
+    el.textContent = b;
+    track.appendChild(el);
+  });
+
+  // RFQ rows
+  let rowCount = 0;
+
+  function addRow(pn = '', brand = '', qty = '') {
+    rowCount++;
+    const id = 'row-' + rowCount;
+    const div = document.createElement('div');
+    div.className = 'rfq-row';
+    div.id = id;
+    div.innerHTML = `
+      <span class="row-num">${rowCount}</span>
+      <input type="text" placeholder="e.g. 3RV2011-1KA10" value="${pn}" />
+      <select>
+        <option value="">— Brand —</option>
+        ${brands.map(b => `<option${b===brand?' selected':''}>${b}</option>`).join('')}
+      </select>
+      <input type="number" placeholder="1" min="1" value="${qty}" style="text-align:center;" />
+      <button type="button" class="btn-remove" onclick="removeRow('${id}')" title="Remove row">×</button>
+    `;
+    document.getElementById('rfqRows').appendChild(div);
+    updateCount();
+  }
+
+  function removeRow(id) {
+    document.getElementById(id)?.remove();
+    updateCount();
+  }
+
+  function updateCount() {
+    document.getElementById('rowCountDisplay').textContent =
+      document.querySelectorAll('.rfq-row').length;
+  }
+
+  function clearForm() {
+    if (!confirm('Clear all rows and reset the form?')) return;
+    document.getElementById('rfqRows').innerHTML = '';
+    rowCount = 0;
+    addRow(); addRow(); addRow();
+  }
+
+  // URL param pre-fill
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('email'))   document.getElementById('emailField').value   = p.get('email');
+  if (p.get('company')) document.getElementById('companyField').value = p.get('company');
+
+  const prefillPN = p.get('pn') || '', prefillBrand = p.get('brand') || '', prefillQty = p.get('qty') || '';
+  if (prefillPN) { addRow(prefillPN, prefillBrand, prefillQty); addRow(); addRow(); }
+  else           { addRow(); addRow(); addRow(); }
+
+  // Submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-primary');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '✓ Submitted';
+      btn.style.background = 'var(--success)';
+      document.getElementById('toast').classList.add('show');
+      setTimeout(() => document.getElementById('toast').classList.remove('show'), 5000);
+    }, 1100);
+  }
+</script>
+</body>
+</html>
