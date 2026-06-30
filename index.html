@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JL7VNGDD9F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JL7VNGDD9F');
-</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Request for Quotation — Elteros Projektai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JL7VNGDD9F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JL7VNGDD9F');
+</script>
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -164,7 +165,7 @@
 
 <section class="top-section">
   <div class="top-eyebrow">RFQ Portal</div>
-  <h1>Paste Your Parts.<br/><em>Get a Quote in 24h.</em></h1>
+  <h1>Paste Your Parts.<br/><em>Get a Quote.</em></h1>
   <p>List your part numbers, brands, and quantities below — one per line, exactly as you have them. No forms to fill row by row.</p>
 
   <form id="rfqForm" action="https://formspree.io/f/mrevdgnl" method="POST">
@@ -284,12 +285,14 @@ Belimo damper actuator x1"></textarea>
   if (p.get('company')) document.getElementById('companyField').value = p.get('company');
   if (p.get('list'))    textarea.value = decodeURIComponent(p.get('list'));
   counter.textContent = textarea.value.length + ' characters';
-document.getElementById('rfqForm').addEventListener('submit', function() {
-  gtag('event', 'rfq_submitted', {
-    'event_category': 'RFQ',
-    'event_label': 'Form Submission'
+
+  // Track RFQ submission in Google Analytics
+  document.getElementById('rfqForm').addEventListener('submit', function() {
+    gtag('event', 'rfq_submitted', {
+      'event_category': 'RFQ',
+      'event_label': 'Form Submission'
+    });
   });
-});
 </script>
 </body>
 </html>
