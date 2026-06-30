@@ -284,6 +284,12 @@ Belimo damper actuator x1"></textarea>
   if (p.get('company')) document.getElementById('companyField').value = p.get('company');
   if (p.get('list'))    textarea.value = decodeURIComponent(p.get('list'));
   counter.textContent = textarea.value.length + ' characters';
+document.getElementById('rfqForm').addEventListener('submit', function() {
+  gtag('event', 'rfq_submitted', {
+    'event_category': 'RFQ',
+    'event_label': 'Form Submission'
+  });
+});
 </script>
 </body>
 </html>
